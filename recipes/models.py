@@ -5,14 +5,17 @@ from django.db import models
 class Category (models.Model):
     name = models.CharField(max_length=65)
 
+    def __str__(self):
+        return self.name
+
 
 class Recipe(models.Model):
     titel = models.CharField(max_length=65)
     descreption = models.CharField(max_length=165)
     slug = models.SlugField()
-    preparation_time = models.IntegerField
+    preparation_time = models.IntegerField()
     preparation_time_unit = models.CharField(max_length=65)
-    servigs = models.IntegerField
+    servigs = models.IntegerField()
     servigs_unit = models.CharField(max_length=65)
     preparatio_steps = models.TextField()
     preparatio_steps_is_html = models.BooleanField(default=False)
@@ -24,3 +27,6 @@ class Recipe(models.Model):
         Category, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.titel
