@@ -14,13 +14,6 @@ def home(request):  # pylint: disable=unused-argument
 
 
 def category(request, category_id):
-    # recipes = Recipe.objects.filter(
-    # category__id=category_id,
-    # is_published=True,
-    # ).order_by('-id')
-
-    # if not recipes:
-    # raise Http404('Not found 🥲')
     recipes = get_list_or_404(Recipe.objects.filter(
         category__id=category_id, is_published=True
     ).order_by('-id')
@@ -33,7 +26,11 @@ def category(request, category_id):
 
 
 def recipe(request, id):  # pylint: disable=unused-argument
+    recipe = Recipe.objects.filter(
+        pk=id,
+        is_published=True
+    ).order_by('-id').first
     return render(request, 'recipes/pages/recipe-view.html', context={
-        'recipe': make_recipe(),
+        'recipe': recipe(),
         'is_detail_page': True,
     })
