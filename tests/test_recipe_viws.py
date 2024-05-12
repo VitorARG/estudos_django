@@ -1,11 +1,11 @@
-from django.test import TestCase
 from django.urls import resolve, reverse
 
 from recipes import views
-from recipes.models import Category, Recipe, User
+
+from .test_recipe_base import Recipetestbase
 
 
-class RecipeViewsTest(TestCase):
+class RecipeViewsTest(Recipetestbase):
     def test_recipe_home_view_functions_is_correct(self):
         view = resolve(reverse('recipes:home'))
         self.assertIs(view.func, views.home)
@@ -24,36 +24,18 @@ class RecipeViewsTest(TestCase):
                       responser.content.decode('utf-8'))
 
     def test_recipe_home_template_loads_recipes(self):
-        category = Category.objects.create(name='category')
-        author = User.objects.create_user(
-            first_name='user',
-            last_name='name',
-            username='username',
-            password='123456',
-            email='username@email.com',)
+        # Criando uma receita para esse teste
+        self.make_recipe(author_data={'first_name': 'matheus'})
 
-        recipe = Recipe.objects.create(
-            category=category,
-            author=author,
-            title='Recipe Title',
-            description='Recipe Description',
-            slug='recipe-slug',
-            preparation_time='10',
-            preparation_time_unit='minutos',
-            servings='5',
-            servings_unit='Porções',
-            preparation_steps='recipe preparation steps',
-            preparation_steps_is_html=False,
-            is_published=True,
-        )
         responser = self.client.get(reverse('recipes:home'))
         content = responser.content.decode('utf-8')
         response_context_recipes = responser.context['recipes']
+
+        # checando se a receita foi criada
         self.assertIn('Recipe Title',  content)
         self.assertIn('10 minutos', content)
-        self.assertIn('5 Porções', content)
+        self.assertIn('matheus', content)
         self.assertEqual(len(response_context_recipes), 1)
-        ...
 
     def test_recipe_category_view_functions_is_correct(self):
         view = resolve(reverse('recipes:category',
