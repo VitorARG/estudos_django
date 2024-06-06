@@ -30,3 +30,7 @@ def recipe(request, id):  # pylint: disable=unused-argument
         'recipe': recipe,
         'is_detail_page': True,
     })
+
+
+def search(request):
+    return render(request, 'recipes/pages/search.html')
