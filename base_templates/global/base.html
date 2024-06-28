@@ -13,10 +13,10 @@
     {% include "Recipes/partial/header.html" %}
     {% include "Recipes/partial/search.html" %}
 
-
     <main class="main-content-conteiner">
         {% block content %}{% endblock content %}
 
+        {% include "Recipes/partial/pagination.html" %}
     </main>
     {% include 'recipes/partial/footer.html' %}
 

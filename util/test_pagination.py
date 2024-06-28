@@ -7,7 +7,7 @@ class PaginationTest(TestCase):
     def test_make_pagination_range_returns_a_pagination_range(self):
 
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=1,
         )['pagination']
@@ -16,14 +16,14 @@ class PaginationTest(TestCase):
     def test_first_range_is_static_if_current_page_is_less_than_middle_page(self):  # noqa 501
         # Current page = 1 - Qty Page = 2 - Middle Page = 2
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=1,
         )['pagination']
         self.assertEqual([1, 2, 3, 4], pagination)
         # Current page = 2 - Qty Page = 2 - Middle Page = 2
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=2,
         )['pagination']
@@ -31,7 +31,7 @@ class PaginationTest(TestCase):
         # Current page = 3 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=3,
         )['pagination']
@@ -39,7 +39,7 @@ class PaginationTest(TestCase):
         # Current page = 4 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=4,
         )['pagination']
@@ -49,7 +49,7 @@ class PaginationTest(TestCase):
         # Current page = 10 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=10,
         )['pagination']
@@ -57,7 +57,7 @@ class PaginationTest(TestCase):
         # Current page = 12 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=12,
         )['pagination']
@@ -68,7 +68,7 @@ class PaginationTest(TestCase):
         # Current page = 18 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=18,
         )['pagination']
@@ -77,7 +77,7 @@ class PaginationTest(TestCase):
         # Current page = 18 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=19,
         )['pagination']
@@ -86,7 +86,7 @@ class PaginationTest(TestCase):
         # Current page = 20 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=20,
         )['pagination']
@@ -95,7 +95,7 @@ class PaginationTest(TestCase):
         # Current page = 21 - Qty Page = 2 - Middle Page = 2
         # HERE RANGE SHOULD CHANGE
         pagination = make_pagination_range(
-            pagination_range=list(range(1, 21)),
+            page_range=list(range(1, 21)),
             qty_page=4,
             current_page=21,
         )['pagination']
