@@ -2,6 +2,8 @@
 {% block title %}Home |{% endblock title %}
 
 {% block content %}
+{% include "recipes/partial/message.html" %}
+
     <div class="main-content main-content-list conteiner">
         {% for recipe in recipes  %}
         {% include "recipes/partial/recipe.html" %}
