@@ -1,7 +1,6 @@
 
 import os
 
-from django.contrib import messages
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
@@ -17,9 +16,6 @@ def home(request):  # pylint: disable=unused-argument
     recipes = Recipe.objects.filter(
         is_published=True
     ).order_by('-id')
-    messages.success(request, 'ola')
-    messages.info(request, 'ola')
-    messages.error(request, 'ola')
 
     page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
 
